@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wumpus World Logic Agent</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div id="app">
+
+  <div class="title-wrap">
+    <h1>⚡ WUMPUS WORLD</h1>
+    <div class="subtitle">KNOWLEDGE-BASED AGENT · PROPOSITIONAL LOGIC · RESOLUTION REFUTATION</div>
+    <div class="glow-bar"></div>
+  </div>
+
+  <div class="top-bar">
+    <label>Rows&nbsp;<input type="number" id="in-rows" value="4" min="3" max="6"></label>
+    <label>Cols&nbsp;<input type="number" id="in-cols" value="4" min="3" max="6"></label>
+    <button id="btn-new"  onclick="initGame()">▶ NEW EPISODE</button>
+    <button id="btn-step" onclick="agentStep()">⏭ STEP</button>
+    <button id="btn-auto" onclick="autoRun()">⚡ AUTO RUN</button>
+  </div>
+
+  <div class="legend">
+    <span class="leg-item"><span class="leg-box unknown-box"></span>Unknown</span>
+    <span class="leg-item"><span class="leg-box visited-box"></span>Visited</span>
+    <span class="leg-item"><span class="leg-box safe-box"></span>Safe ✓</span>
+    <span class="leg-item"><span class="leg-box danger-box"></span>Hazard</span>
+    <span class="leg-note">🤖 Agent &nbsp;👾 Wumpus &nbsp;🕳 Pit &nbsp;💰 Gold &nbsp;~ Breeze &nbsp;Ψ Stench</span>
+  </div>
+
+  <div id="status">Press NEW EPISODE to begin.</div>
+  <div id="grid-wrap"><div id="grid" class="grid"></div></div>
+
+  <div class="panel">
+    <div class="card cyan">
+      <h3>⚡ Percepts at Agent</h3>
+      <div id="percept-display" class="percept-badges"><span class="badge none">NONE</span></div>
+      <div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+    </div>
+    <div class="card purple">
+      <h3>📊 Real-Time Metrics</h3>
+      <div class="metrics-row">
+        <div class="metric-item"><div class="metric" id="m-steps">0</div><div class="mlabel">Inferences</div></div>
+        <div class="metric-item"><div class="metric" id="m-moves">0</div><div class="mlabel">Moves</div></div>
+        <div class="metric-item"><div class="metric" id="m-safe">0</div><div class="mlabel">Safe Cells</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="card orange">
+      <h3>🧠 Knowledge Base — CNF Clauses</h3>
+      <div id="cnf-display">No clauses yet. Start an episode.</div>
+    </div>
+    <div class="card pink">
+      <h3>📋 Inference Log</h3>
+      <div id="log"><span class="log-info">Waiting for episode...</span></div>
+    </div>
+  </div>
+
+</div><!-- #app -->
+
+<script src="script.js"></script>
+</body>
+</html>
